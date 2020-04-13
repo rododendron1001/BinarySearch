@@ -8,6 +8,7 @@ namespace BinarySearch
         {
             //nr elemente in array
             //int n = 5;
+            Console.Write("Nr. elemente tabel (array) : ");
             bool ok = false;
             int n = 0;
             while (!ok)
@@ -25,19 +26,20 @@ namespace BinarySearch
             else
             {
                 Console.Write("Element pt care se cauta indexul: ");
-                //bool ok = false;
-                int r = 0;
+                ok = false;
+                int index = 0;
                 while (!ok)
                 {
-                    ok = Int32.TryParse(Console.ReadLine(), out r);
+                    ok = Int32.TryParse(Console.ReadLine(), out index);
                     if (!ok) Console.Write("repeta introducere ");
                 }
-                Console.ReadKey();
-                Console.WriteLine($"Index : {r}");
-                int l = 0;
-                int r1 = t.Length - 1;
+                Console.WriteLine();
 
-                int pozitia = cautare_binara(t, l, r1, r);
+                Console.WriteLine("\tVerificare folosind algoritmul de cautare binara recursiv");
+                int l = 0;
+                int r = t.Length - 1;
+
+                int pozitia = cautare_binara(t, l, r, index);
                 if (pozitia == -1)
                 {
                     Console.WriteLine("Elementul cautat nu este in array");
@@ -51,7 +53,7 @@ namespace BinarySearch
 
                 // verificare folosind functia ce foloseste metoda BinarySearch din .NET
                 Console.WriteLine("\tVerificare folosind functia care foloseste metoda BinarySearch din .NET");
-                int pozitia_dot_net = cautare_binara_dot_net(t, r);
+                int pozitia_dot_net = cautare_binara_dot_net(t, index);
                 if (pozitia_dot_net < 0)
                 {
                     Console.WriteLine("\tElementul cautat nu este in array");
